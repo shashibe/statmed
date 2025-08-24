@@ -1,47 +1,51 @@
 # Caveats on using Firth’s penalization in the model-based regression standardization for rare diseases
 
-This repository contains simulation code and input data accompanying the manuscript:  
+This repository contains simulation code and input data for the manuscript:  
 **"Caveats on using Firth’s penalization in the model-based regression standardization for rare diseases"**  
-submitted to *Statistics in Medicine*.
+(*submitted to Statistics in Medicine*).
 
-## Abstract
+The project investigates statistical methods for handling separation and rare events in logistic regression, focusing on the use of Firth’s penalized likelihood in model-based regression standardization (parametric g-formula).
 
-Model-based regression standardization, also known as the parametric g-formula, is widely used to estimate
-marginal effect measures. However, in rare disease settings, the small number of observed events relative to
-the number of covariates can lead to (quasi-)complete separation, resulting in non-convergent estimates in the
-regression models. Firth’s penalized likelihood is a common solution to this issue, ensuring finite parameter
-estimates even for separated data. While effective for estimating regression coefficients, Firth’s method introduces
-bias into model-based regression standardization because of its tendency to shrink the predicted probabilities
-to 0.5, leading to discrepancies between the predicted and observed event rates.  
-
-We examined the implications
-of applying Firth’s method to model-based regression standardization, illustrating its potential bias through an
-empirical study on surgical site infections in orthopedic surgeries. We also proposed two ad hoc corrections (i.e.,
-Firth’s logistic regression with intercept correction and added covariate) to mitigate this bias and evaluated these
-methods via simulation studies, comparing them with propensity score-based approaches. Finally, we applied the
-proposed method to assess the association between SSI, a rare disease, and smoking status in a clinical database of
-orthopedic surgeries.
+---
 
 ## Repository structure
 
-- `Main.R`: R script to run the simulation.
-- `data/`: Contains 18 CSV files with true values for different scenarios.
-- `results/`: Stores simulation outputs (not pushed to GitHub, see `.gitignore`).
+- `Main.R` : Main simulation script  
+- `data/` : Contains 18 CSV files with true values for different scenarios  
+- `results/` : Output directory for simulation results (excluded from GitHub via `.gitignore`)  
+
+---
+
+## Abstract (Summary)
+
+Model-based regression standardization, also known as the parametric g-formula, is widely used to estimate marginal effect measures.  
+However, in rare disease settings, the small number of observed events relative to the number of covariates can lead to (quasi-)complete separation, resulting in non-convergent estimates.  
+Firth’s penalized likelihood is a common solution, ensuring finite estimates even for separated data.  
+
+While effective for regression coefficients, Firth’s method introduces bias into regression standardization by shrinking predicted probabilities toward 0.5, leading to discrepancies between predicted and observed event rates.  
+We examined this bias through an empirical study on surgical site infections in orthopedic surgeries, and proposed two ad hoc corrections (Firth with intercept correction and added covariate).  
+These were evaluated via simulation studies and compared with propensity score–based approaches.  
+Finally, we applied the proposed method to a clinical database of orthopedic surgeries.
+
+---
 
 ## Requirements
 
-- **R version:** 4.2.2 (2022-10-31 ucrt) – *Innocent and Trusting*
-- **Required R packages:**
-  - MASS  
-  - logistf  
-  - geepack  
-  - detectseparation  
-  - parallel  
-  - pbapply  
+This project was developed in **R version 4.2.2 (2022-10-31 ucrt)**.  
+The following R packages are required:
 
-Install them with:
+- `MASS`  
+- `logistf`  
+- `geepack`  
+- `detectseparation`  
+- `parallel`  
+- `pbapply`  
+
+You can install them with:
+
 ```r
 install.packages(c("MASS", "logistf", "geepack", "detectseparation", "parallel", "pbapply"))
+
 
 ## Usage
 
